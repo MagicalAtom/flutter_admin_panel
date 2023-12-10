@@ -1,0 +1,15 @@
+library magical;
+export 'responsive/breakpoint.dart';
+export 'responsive/auto_layout_builder.dart';
+export 'responsive/responsive_design.dart';
+export 'responsive/responsive_layout.dart';
+export 'responsive/size.dart';
+export 'navigator.dart';
+export 'router/route.dart';
+export 'router/router.dart';
+export 'components/slider.dart';
+export 'components/snack_bar.dart';
+export 'SwiftRequest/SwiftRequest.dart';
+export 'SwiftRequest/httpResponse.dart';
+export 'SwiftRequest/easyRequest.dart';
+export 'ext/CustomFileImage.dart';
