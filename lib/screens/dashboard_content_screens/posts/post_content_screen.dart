@@ -19,7 +19,7 @@ class _PostScreenState extends State<PostScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<PostBloc>().add(PostRequestEvent(Page: 2));
+    context.read<PostBloc>().add(PostRequestEvent(Page: 1));
   }
 
   PostScreenSection section = PostScreenSection.show;
@@ -42,7 +42,7 @@ class _PostScreenState extends State<PostScreen> {
               ButtonText = section == show ? 'Add Post' : 'Show Post';
               setState(() {});
               if(section == show){
-                context.read<PostBloc>().add(PostRequestEvent(Page: 2));
+                context.read<PostBloc>().add(PostRequestEvent(Page: 1));
               }
             },
             icon: Icons.add,

@@ -28,6 +28,10 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       emit(PostAddState(postCreateStatus: postCreateStatus));
     });
 
+    on<PostDeleteEvent>((event, emit) async {
+      Either<String, String> postDeleteStatus = await postRepository.deletePost(post: event.post);
+      emit(PostDeleteState());
+    });
 
 
   }

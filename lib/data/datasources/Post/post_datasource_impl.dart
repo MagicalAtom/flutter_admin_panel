@@ -7,5 +7,5 @@ abstract class PostDataSourceInterFace {
 
 Future<List<Post>> getPostFromApi(int Page);
 Future newPost(String title,String date,String text,XFile thumbnail);
-
+Future deletePost(Post post);
 }

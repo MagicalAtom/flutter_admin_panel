@@ -12,6 +12,7 @@ final class PostLoadingState extends PostState {}
 
 final class PostRequestResponseState extends PostState {
   Either<String,List<Post>> postList;
+  int Page = 1;
   PostRequestResponseState({required this.postList});
 }
 
@@ -21,6 +22,11 @@ final class PostRequestResponseState extends PostState {
 final class PostAddState extends PostState {
   Either<String,String> postCreateStatus;
   PostAddState({required this.postCreateStatus});
+}
+
+
+
+final class PostDeleteState extends PostState {
 }
 
 

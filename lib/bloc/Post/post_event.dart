@@ -23,5 +23,9 @@ class PostAddEvent extends PostEvent {
 }
 
 
+class PostDeleteEvent extends PostEvent {
+  Post post;
+  PostDeleteEvent({required this.post});
+}
 
 

@@ -24,20 +24,14 @@ class EasyRequest implements EasyRequestInterFace {
   }
 
   @override
-  setQueryParams(queryParams) {
-    this.QueryParams = queryParams;
+  setQueryParams(queryParam) {
+    QueryParams = queryParam;
   }
 
   @override
   Future<dynamic> get() async {
-    if (QueryParams != null) {
-      Response response = await swiftRequest.get(path: collection as String,queryParameters: QueryParams);
+      Response response = await swiftRequest.get(path: collection as String,queryParam: QueryParams);
       return response;
-    } else {
-      Response response = await swiftRequest.get(
-          path: collection as String);
-      return response;
-    }
   }
 
   @override
