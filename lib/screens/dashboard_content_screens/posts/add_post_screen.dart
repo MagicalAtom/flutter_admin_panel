@@ -1,13 +1,11 @@
 import 'dart:io';
 
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pocogame/bloc/Post/post_bloc.dart';
-import 'package:pocogame/components/dashboard_content.dart';
 import 'package:pocogame/config/color.dart';
-import 'package:pocogame/functions/navigation.dart';
-import 'package:pocogame/magicalUi/ext/validateForm.dart';
 import 'package:pocogame/magicalUi/magic.dart';
 import 'package:pocogame/widgets/CustomText.dart';
 import 'package:pocogame/widgets/CustomTextField.dart';
@@ -25,6 +23,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   final _formKey = GlobalKey<FormState>();
   XFile? selectedFile;
   var defualtImagePath = 'assets/images/whitebackground.jpg';
+
 
 
   /*
@@ -48,13 +47,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorConfig.main,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
-      body: Container(
+    return Container(
+      color: ColorConfig.main,
         margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
         child: Form(
           key: _formKey,
@@ -65,7 +59,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   Expanded(
                       child: CustomTextField(
                         controller: titleTextField,
-                        prefixIcon: Icon(Icons.title),
+                        prefixIcon: const Icon(Icons.title),
                         title: 'Post Title',
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -74,13 +68,13 @@ class _AddPostScreenState extends State<AddPostScreen> {
                           return null;
                         },
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
                       child: CustomTextField(
                         controller: DateTextField,
-                        prefixIcon: Icon(Icons.date_range),
+                        prefixIcon: const Icon(Icons.date_range),
                         title: 'Date',
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -91,7 +85,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       )),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
@@ -122,18 +116,18 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
+                           const Icon(
                               Icons.upload,
                               size: 25,
                               color: Colors.grey,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Center(
                               child: CustomText(
                                 text: 'Upload Thumbnail',
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
                       ),
@@ -141,7 +135,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
@@ -172,7 +166,17 @@ class _AddPostScreenState extends State<AddPostScreen> {
                           text: DescriptionTextField.text,
                           date: DateTextField.text,
                           thumbnail: selectedFile));
+                      CoolAlert.show(
+                        context: context,
+                        width: 120,
+                        type: CoolAlertType.success,
+                        text: 'Successfully added a post to the blog',
+                      );
+                      titleTextField.text = '';
+                      DescriptionTextField.text = '';
+                      DateTextField.text = '';
                     }
+
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -182,8 +186,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   ))
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

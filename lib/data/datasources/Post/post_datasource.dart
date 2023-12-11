@@ -12,16 +12,18 @@ import 'package:pocogame/magicalUi/magic.dart';
 
 class PostDataSource implements PostDataSourceInterFace {
   @override
-  Future<List<Post>> getPostFromApi() async {
+  Future<List<Post>> getPostFromApi(int Page) async {
     final easy = EasyRequest(ApiConfig.apiRoot);
     easy.setCollection(ApiConfig.getAllPosts.path);
     Response finalPostData = await easy.get();
+    easy.setQueryParams({
+      "pagination[page]" : "$Page",
+    });
     List<Post> posts = [];
     httpResponseStatus(
         statusCode: finalPostData.statusCode as int,
         onSuccess: () {
           for (int i = 0; i < finalPostData.data['data'].length; i++) {
-            print('get');
             posts
                 .add(Post.fromMap(finalPostData.data['data'][i]['attributes']));
           }
@@ -49,7 +51,7 @@ class PostDataSource implements PostDataSourceInterFace {
       Response response = await SwiftRequest().post(path: ApiConfig.getAllPosts.path, data: formData);
 
       httpResponseStatus(statusCode: response.statusCode as int, onSuccess: (){
-        print('ok send it');
+        return 'ok';
       });
 
 

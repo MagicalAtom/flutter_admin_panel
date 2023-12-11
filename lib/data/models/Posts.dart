@@ -1,6 +1,5 @@
 import 'dart:convert';
 class Post {
-
   String title;
   String text;
   String date;

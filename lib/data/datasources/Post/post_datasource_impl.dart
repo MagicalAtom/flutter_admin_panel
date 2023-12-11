@@ -5,7 +5,7 @@ import 'package:pocogame/data/models/Posts.dart';
 
 abstract class PostDataSourceInterFace {
 
-Future<List<Post>> getPostFromApi();
+Future<List<Post>> getPostFromApi(int Page);
 Future newPost(String title,String date,String text,XFile thumbnail);
 
 }

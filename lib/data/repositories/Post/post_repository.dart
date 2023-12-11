@@ -9,9 +9,9 @@ class PostRepository implements PostRepositoryInterFace {
   final PostDataSourceInterFace postDataSource = ServiceLocator.get();
 
   @override
-  Future<Either<String, List<Post>>> getAllPostFromApi() async {
+  Future<Either<String, List<Post>>> getAllPostFromApi(int Page) async {
     try {
-      List<Post> posts = await postDataSource.getPostFromApi();
+      List<Post> posts = await postDataSource.getPostFromApi(Page);
       return right(posts);
     } on HttpExceptionHandle catch (e) {
       return left(e.message ?? '');

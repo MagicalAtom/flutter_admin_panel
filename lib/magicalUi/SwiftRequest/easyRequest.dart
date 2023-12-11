@@ -12,7 +12,7 @@ class EasyRequest implements EasyRequestInterFace {
   String base;
   String? collection;
   Map<String, dynamic>? data;
-  String? QueryParams;
+  var QueryParams;
   Response? swiftResponse;
 
   EasyRequest(this.base);
@@ -30,14 +30,12 @@ class EasyRequest implements EasyRequestInterFace {
 
   @override
   Future<dynamic> get() async {
-    if (QueryParams == null) {
-      Response response = await swiftRequest.get(path: collection as String);
-      swiftResponse = response;
-      return swiftResponse;
+    if (QueryParams != null) {
+      Response response = await swiftRequest.get(path: collection as String,queryParameters: QueryParams);
+      return response;
     } else {
       Response response = await swiftRequest.get(
-          path: collection as String, queryParameters: QueryParams);
-      print('b');
+          path: collection as String);
       return response;
     }
   }

@@ -47,6 +47,8 @@ dependencies:
   dropdown_button2: ^2.3.9
   file_picker: ^6.1.1
   image_picker: ^1.0.4
+  flutter_quill: ^8.1.1
+  cool_alert: ^2.0.1
 
 
 
