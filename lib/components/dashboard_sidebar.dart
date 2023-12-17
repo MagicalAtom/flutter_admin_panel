@@ -51,7 +51,7 @@ class _DashBoardSideBarState extends State<DashBoardSideBar> {
                 size: 26,
               ),
               onTapItem: () {
-                context.read<DashboardBloc>().add(openDashBoardTab(tab: 1));
+                context.read<DashboardBloc>().add(openDashBoardTab(tab: 2));
               },
             ),
             SideBarItem(

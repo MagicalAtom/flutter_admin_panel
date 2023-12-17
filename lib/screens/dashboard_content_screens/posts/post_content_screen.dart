@@ -40,6 +40,8 @@ class _PostScreenState extends State<PostScreen> {
             onTap: () {
               section = section == show ? create : show;
               ButtonText = section == show ? 'Add Post' : 'Show Post';
+              context.read<PostBloc>().add(PostRequestEvent(Page: 1));
+
               setState(() {});
               if(section == show){
                 context.read<PostBloc>().add(PostRequestEvent(Page: 1));
@@ -52,14 +54,7 @@ class _PostScreenState extends State<PostScreen> {
             height: 30,
           ),
           section == show
-              ? BlocBuilder<PostBloc, PostState>(builder: (context, state) {
-                  if (state is PostRequestResponseState) {
-                    return ShowPostScreen(
-                      state: state,
-                    );
-                  }
-                  return const CircularProgressIndicator();
-                })
+              ? ShowPostScreen()
               : BlocProvider.value(
                   value: ServiceLocator.get<PostBloc>(),
                   child: AddPostScreen(),

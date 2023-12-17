@@ -24,8 +24,21 @@ class PostAddEvent extends PostEvent {
 
 
 class PostDeleteEvent extends PostEvent {
-  Post post;
+  int post;
   PostDeleteEvent({required this.post});
 }
 
 
+class PostUpdateEvent extends PostEvent {
+  final title;
+  final text;
+  final date;
+  final id;
+
+  PostUpdateEvent(
+      {required this.title,
+        required this.text,
+        required this.date,
+        required this.id,
+      });
+}

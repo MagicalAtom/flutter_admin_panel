@@ -17,7 +17,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<PostRequestEvent>((event, emit) async {
       emit(PostLoadingState());
       Either<String, List<Post>> postList =
-          await postRepository.getAllPostFromApi(event.Page);
+      await postRepository.getAllPostFromApi(event.Page);
       emit(PostRequestResponseState(postList: postList));
     });
 
@@ -29,10 +29,16 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     });
 
     on<PostDeleteEvent>((event, emit) async {
-      Either<String, String> postDeleteStatus = await postRepository.deletePost(post: event.post);
+      Either<String, String> postDeleteStatus =
+      await postRepository.deletePost(post: event.post);
       emit(PostDeleteState());
     });
 
-
+    on<PostUpdateEvent>((event, emit) async {
+      emit(PostLoadingState()); // این رو نشون میده روش منتظر میمونه تا مرحله بعد انجام بشه
+      Either<String, String> postUpdatedStatus = await postRepository
+          .updatePost(event.title, event.text, event.date, event.id);
+      emit(PostUpdatedState(postUpdatedStatus: postUpdatedStatus));
+    });
   }
 }

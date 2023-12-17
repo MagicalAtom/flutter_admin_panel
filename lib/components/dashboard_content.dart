@@ -17,6 +17,12 @@ class DashBoardContent extends StatelessWidget {
 
     return Expanded(
       flex: 5,
+      /*
+      هر بار درخواستی یا ایونتی مبنی بر تغییر صفحه بره سمت بلاک اینجا با بلاک بیلدر کل
+      صفحه آپدیت میشه .
+      ایندکس صفحه مورد نظر رو تو ساید بار مشخص کردیم
+      بعد اینجا از سمت استیت میاره اینجا نشون میده 
+       */
       child: BlocBuilder<DashboardBloc,DashboardState>(
         builder: (context, state) {
           return Container(

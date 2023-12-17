@@ -31,13 +31,25 @@ class PostRepository implements PostRepositoryInterFace {
   }
 
   @override
-  Future<Either<String,String>> deletePost({required Post post}) async {
+  Future<Either<String,String>> deletePost({required int post}) async {
     try{
-      final response = await postDataSource.deletePost(post);
+      var response = await postDataSource.deletePost(post);
       return right('deleted');
     }on HttpExceptionHandle catch(e){
       return left(e.message ?? '');
     }
 
   }
+
+  @override
+  Future<Either<String, String>> updatePost(String? title, String? date, String? text, id) async {
+    try{
+      var response = await postDataSource.updatePost(title, date, text, id);
+      return right('updated');
+    }on HttpExceptionHandle catch(e){
+      return left(e.message ?? '');
+    }
+  }
+
+
 }

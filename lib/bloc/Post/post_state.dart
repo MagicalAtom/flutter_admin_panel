@@ -29,7 +29,10 @@ final class PostAddState extends PostState {
 final class PostDeleteState extends PostState {
 }
 
-
+final class PostUpdatedState extends PostState {
+  Either<String,String> postUpdatedStatus;
+  PostUpdatedState({required this.postUpdatedStatus});
+}
 
 
 

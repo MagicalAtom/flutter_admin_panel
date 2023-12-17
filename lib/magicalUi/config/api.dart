@@ -18,6 +18,7 @@ class ApiConfig {
 
   static final getAllProducts = ApiPath(name: 'getAllProduct', path: '/api/products');
   static final getAllPosts = ApiPath(name: 'getAllPost', path: '/api/posts');
+  static final getAllCategories = ApiPath(name: 'getAllCategories', path: '/api/categories');
 
 
 

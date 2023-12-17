@@ -57,14 +57,29 @@ class PostDataSource implements PostDataSourceInterFace {
   }
 
   @override
-  Future deletePost(Post post) async {
-      Response response = await SwiftRequest().delete(path: ApiConfig.getAllPosts, id: post.id);
-      print("asdasd");
-
+  Future deletePost(int post) async {
+    Response response = await SwiftRequest().delete(path: ApiConfig.getAllPosts.path, id: post);
       httpResponseStatus(
           statusCode: response.statusCode as int,
           onSuccess: () {
             return 'ok';
           });
+  }
+
+  @override
+  Future updatePost(String? title, String? date, String? text,id) async {
+    FormData formData = FormData.fromMap({
+      "data": jsonEncode({
+        "title": title,
+        "date": date,
+        "text": text,
+      }),
+    });
+    Response response = await SwiftRequest().put(path: ApiConfig.getAllPosts.path, id: id, data: formData);
+    httpResponseStatus(
+        statusCode: response.statusCode!,
+        onSuccess: () {
+          return 'ok';
+        });
   }
 }
